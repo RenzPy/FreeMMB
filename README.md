@@ -29,3 +29,8 @@ FreeMMB/
 The EDL firehose programmer for QCM6125 is stored at `loader/prog_firehose.bin`.
 It is used by tools such as [edl](https://github.com/bkerler/edl) to communicate
 with the device in Emergency Download (EDL / 9008) mode.
+
+## Contributors
+
+- [**RenzPy**](https://github.com/RenzPy) — Project owner
+- **Antigravity AI** — AI pair-programming assistant (repo setup, documentation)
