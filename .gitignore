@@ -1,0 +1,12 @@
+# Large binary images
+*.img
+*.bin
+
+# Dump artifacts
+dumps/*
+
+# Keep the loader firehose binary
+!loader/*.bin
+
+# Keep the dumps directory via .gitkeep
+!dumps/.gitkeep
