@@ -13,3 +13,6 @@ dumps/*
 
 # Python bytecode
 __pycache__/
+
+# Downloaded host tools (platform-tools etc.)
+tools/
