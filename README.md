@@ -37,11 +37,39 @@ is `001750e1`, not our MSM_ID `0010a0e1`.
 Set `$env:EDL_MEMORY = "emmc"` or `"ufs"` if storage autodetect fails, and `$env:EDL_DIR`
 if edl is not in `C:\Users\Asus\Downloads\edl-3.52.1`.
 
+## Storage layout
+
+UFS, 6 LUNs, A/B slots. Stock firmware is Android 11 (security patch 2021-10), boot header v2.
+**Slot B is active** (`boot_b` flags `0x77`: active + successful), so patches target `boot_b`.
+Both `vbmeta` images ship with flags `1` (hashtree/dm-verity disabled), and `devinfo`
+reports `is_unlocked=1`.
+
+## Stock backup
+
+`dumps/full/lunN/` holds a raw dump of every partition except `userdata`, made with:
+
+```powershell
+.\scripts\edl.ps1 rl dumps\full --skip=userdata --genxml
+```
+
+Each LUN folder also has its `gpt_main`, `gpt_backup` and `rawprogramN.xml`. The SHA-256 of
+every file is in [docs/stock-sha256sums.txt](docs/stock-sha256sums.txt); check a copy with
+`sha256sum -c` from inside `dumps/full`. Keep a copy of `dumps/full` off this PC:
+`persist`, `modemst1`, `modemst2`, `fsg` and `devinfo` are unique to this board and cannot
+be rebuilt from any firmware package.
+
+To restore a single partition (for example after a bad boot patch):
+
+```powershell
+.\scripts\edl.ps1 w boot_b dumps\full\lun4\boot_b.bin
+```
+
 ## Repository Structure
 
 ```
 FreeMMB/
 ├── apks/        # APK files
+├── docs/        # Stock checksums and notes
 ├── dumps/       # Partition dumps (git-ignored, local only)
 ├── loader/      # Qualcomm EDL firehose loader
 │   └── prog_firehose.bin
