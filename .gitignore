@@ -10,3 +10,6 @@ dumps/*
 
 # Keep the dumps directory via .gitkeep
 !dumps/.gitkeep
+
+# Python bytecode
+__pycache__/
