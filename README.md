@@ -64,6 +64,23 @@ To restore a single partition (for example after a bad boot patch):
 .\scripts\edl.ps1 w boot_b dumps\full\lun4\boot_b.bin
 ```
 
+## Offline analysis
+
+Pure-Python tools (no WSL or 7-Zip needed). In Git Bash, set `MSYS_NO_PATHCONV=1` so
+image paths like `/system/build.prop` aren't rewritten into Windows paths.
+
+| Script | Does |
+|---|---|
+| `scripts/lpunpack.py` | Lists or extracts logical partitions from `super` |
+| `scripts/ext4extract.py` | `ls` / `cat` / `extract` inside an ext4 image |
+| `scripts/avbverify.py` | Checks images against vbmeta hashtree and hash descriptors |
+
+Findings are in [docs/recon.md](docs/recon.md).
+
+> **Warning:** holding the reset button for more than about 10 seconds factory-resets the
+> box, and so does inserting a USB stick that contains a file named `recovery_command`.
+> See the recon notes.
+
 ## Repository Structure
 
 ```
