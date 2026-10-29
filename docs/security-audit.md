@@ -9,7 +9,7 @@ the box has no network, and capturing needs root.
 - **SELinux is Permissive** (`getenforce`). Nothing confines root services.
 - `/system/xbin/msu` is setuid root but fails for the shell user (`setgid failed`), so it is
   not a privilege escalation from apps or ADB.
-- Mobile data history (`dumpsys netstats --full --uid`, SIM MCC/MNC 228/02, Jul–Oct 2026):
+- Mobile data history (`dumpsys netstats --full --uid`, Jul–Oct 2026):
   - OEM uid-1000 apps: no traffic at all.
   - root (uid 0): about 1 MB sent, nothing received, in small bursts per drive.
   - `com.zjinnova.zlink` (CarPlay engine): a few hundred bytes sent per drive, nothing received.
