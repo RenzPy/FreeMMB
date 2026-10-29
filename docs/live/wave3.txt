@@ -2,3 +2,4 @@ com.android.bips
 com.android.printservice.recommendation
 com.android.printspooler
 com.biomes.vanced
+com.wits.pms
